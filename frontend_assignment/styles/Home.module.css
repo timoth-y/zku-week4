@@ -22,21 +22,13 @@
 }
 
 .button {
-    padding: 10px 16px;
-    border: 1px solid white;
-    border-radius: 5px;
-    width: 200px;
-    text-align: center;
+    height: 2.5rem;
     cursor: pointer;
 }
 
-.button:hover {
-    background-color: rgba(0, 0, 0, 0.08);
-}
-
-.button:active {
-    position: relative;
-    top: 1px;
+.input {
+    width: 25rem;
+    margin-bottom: 1rem;
 }
 
 .title {

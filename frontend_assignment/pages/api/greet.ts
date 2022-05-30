@@ -7,7 +7,7 @@ import type { NextApiRequest, NextApiResponse } from "next"
 // However they will not be aware of the identity of the users generating the proofs.
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { greeting, nullifierHash, solidityProof } = JSON.parse(req.body)
+    const { nickname, greeting, nullifierHash, solidityProof } = JSON.parse(req.body)
 
     const contract = new Contract("0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512", Greeter.abi)
     const provider = new providers.JsonRpcProvider("http://localhost:8545")
@@ -15,8 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const contractOwner = contract.connect(provider.getSigner())
 
     try {
-        await contractOwner.greet(utils.formatBytes32String(greeting), nullifierHash, solidityProof)
-
+        await contractOwner.greet(utils.formatBytes32String(nickname), utils.formatBytes32String(greeting), nullifierHash, solidityProof)
         res.status(200).end()
     } catch (error: any) {
         const { message } = JSON.parse(error.body).error
